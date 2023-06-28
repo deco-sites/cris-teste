@@ -1,5 +1,6 @@
 interface Props {
   title?: string;
+  subtitle?: string;
   fontSize?: "Normal" | "Large";
   description?: string;
   alignment: "center" | "left";
@@ -9,7 +10,7 @@ interface Props {
 function Header(props: Props) {
   return (
     <>
-      {props.title || props.description
+      {props.title || props.subtitle || props.description
         ? (
           <div
             class={`flex flex-col gap-2 ${
@@ -29,6 +30,21 @@ function Header(props: Props) {
                 `}
                 >
                   {props.title}
+                </h1>
+              )}
+            {props.subtitle &&
+              (
+                <h1
+                  class={`text-2xl leading-8 lg:leading-10
+                  ${
+                    props.colorReverse
+                      ? "text-primary-content"
+                      : "text-base-content"
+                  }
+                  ${props.fontSize === "Normal" ? "lg:text-3xl" : "lg:text-4xl"}
+                `}
+                >
+                  {props.subtitle}
                 </h1>
               )}
             {props.description &&
